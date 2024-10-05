@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
+        <title>Palette Picker</title>
         <link rel="stylesheet" href="../css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -74,6 +74,14 @@
                   <i class="material-icons">info</i>About</a
                 >
               </li>
+              <li>
+                <a
+                    href="/pages/howto.html"
+                    class="waves-effect grey-text text-darken-4"
+                >
+                    <i class="material-icons">local_library</i>User Guide</a
+                >
+              </li>
               <li><div class="divider"></div></li>
               <li>
                 <a
@@ -86,28 +94,40 @@
             </ul>
           </aside>
           <main>
-            
             <div class="container">
-              <div class="row">
-                <div class="col s12 left-align py-2">
-                  <h3 class="">About this Website</h3>
+                <div class="row">
+                    <div class="col s12">
+                        <h3>Contact Us</h3>
+                        <p>If you have any questions, feel free to reach out to us using the form below:</p>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="name" type="text" class="validate">
+                                        <label for="name">Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="message" class="materialize-textarea"></textarea>
+                                        <label for="message">Message</label>
+                                    </div>
+                                </div>
+                                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="col s12 left-align flow-text py-2">
-                  <blockquote>This is Website will randomly pick a set of color swatches to create a palette from an uploaded image</blockquote>
-                </div>
-                <div class="col s12 left-align pt-3 pb-3">
-
-                </div>
-                <div class="col s12 left-align flow-text py-2">
-                  <h4>Note:</h4>
-                  <blockquote>
-                    the palette give are not always the perfect fit for the image uploaded us the the color picker are base on a simple algorithm that pick the most dominant color in the image when the image is srunken down to 100 by 100 pixels for quicker response time.
-                  </blockquote>
-                </div>
-              </div>
             </div>
-            
-          </main>
+        </main>
 
     <script type="text/javascript" src="../js/ui.js"></script>
     <script type="text/javascript" src="../js/materialize.min.js"></script>

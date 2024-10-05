@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
+        <title>Palette Picker</title>
         <link rel="stylesheet" href="../css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -75,6 +75,14 @@
                   <i class="material-icons">info</i>About</a
                 >
               </li>
+              <li>
+                <a
+                    href="/pages/howto.html"
+                    class="waves-effect grey-text text-darken-4"
+                >
+                    <i class="material-icons">local_library</i>User Guide</a
+                >
+              </li>
               <li><div class="divider"></div></li>
               <li>
                 <a
@@ -90,17 +98,45 @@
             
             <div class="container">
               <div class="row">
-                <div class="col s12 left-align">
+                <div class="col s12 left-align py-2">
                   <h3 class="">About this Website</h3>
                 </div>
-                <div class="col s12 left-align flow-text">
+                <div class="col s12 left-align flow-text py-2">
                   <blockquote>This is Website will randomly pick a set of color swatches to create a palette from an uploaded image</blockquote>
                 </div>
-                <div class="col s12 left-align flow-text">
-                  <h4>Note:</h4>
-                  <blockquote>
-                    the palette give are not always the perfect fit for the image uploaded us the the color picker are base on a simple algorithm that pick the most dominant color in the image when the image is srunken down to 100 by 100 pixels for quicker response time.
-                  </blockquote>
+                <div class="col s12 left-align pt-3 pb-3">
+                  <div class="col s6 left-align">
+                    <img src="/img/boy_499x500.png" alt="boy_place" class="responsive-img">
+                  </div>
+                  <div class="col s6 left-align flow-text truncate-container">
+                    <blockquote>
+                      <h4>Author</h4>
+                      <p id="text-content" class="truncate">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                        sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                        Dolor euismod ipsum quisque dictumst congue blandit rutrum. Tempor metus tortor senectus maecenas luctus dis consectetur. Nibh habitasse curae tempus
+                        rhoncus congue tincidunt eleifend. Senectus curae laoreet ante turpis vehicula elementum libero metus. Donec a platea interdum ad fringilla convallis.
+                        Turpis phasellus sit magnis potenti purus turpis venenatis.
+                      </p>
+                      <button id="toggle-btn" class="btn waves-effect waves-light">Show More</button>
+                    </blockquote>
+                  </div>
+                </div>
+                <div class="col s12 left-align flow-text py-2">
+                  <h4>Information:</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                    Dolor euismod ipsum quisque dictumst congue blandit rutrum. Tempor metus tortor senectus maecenas luctus dis consectetur. Nibh habitasse curae tempus
+                    rhoncus congue tincidunt eleifend. Senectus curae laoreet ante turpis vehicula elementum libero metus. Donec a platea interdum ad fringilla convallis.
+                    Turpis phasellus sit magnis potenti purus turpis venenatis.
+                  </p>
                 </div>
               </div>
             </div>
