@@ -1,3 +1,13 @@
+// truncateFileName function to truncate file name if it exceeds maxLength
+function truncateFileName(fileName, maxLength) {
+    const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+    let nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
+    if (nameWithoutExtension.length > maxLength) {
+        nameWithoutExtension = nameWithoutExtension.substring(0, maxLength) + '...';
+    }
+    return nameWithoutExtension + fileExtension;
+}
+
 // Event listener for file input change
 document.getElementById('imageInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -6,6 +16,8 @@ document.getElementById('imageInput').addEventListener('change', function(event)
         return;
     }
 
+    const truncatedName = truncateFileName(file.name, 10);
+    console.log('Truncated file name:', truncatedName);
     const img = new Image();
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
