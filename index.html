@@ -140,5 +140,16 @@
     <script type="text/javascript" src="js/ui.js"></script>
     <script type="text/javascript" src="js/palette.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
     </body>
 </html>

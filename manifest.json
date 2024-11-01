@@ -21,7 +21,7 @@
     ],
     "screenshots": [
       {
-        "src": "/img/screenshots/Screenshot1.png",
+        "src": "/img/screenshot1.png",
         "type": "image/png",
         "sizes": "1920x878",
         "form_factor": "wide"

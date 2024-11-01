@@ -1,6 +1,6 @@
-const CACHE_NAME = 'my-pwa-cache-v1';
+const CACHE_NAME = 'pallete-v1';
+
 const urlsToCache = [
-  "/",
   "/index.html",
   "/pages/about.html",
   "/pages/contact.html",
@@ -45,7 +45,7 @@ self.addEventListener("activate", async (event) => {
   );
 });
 
-// Fetch event with async/await
+// Fetch event
 self.addEventListener("fetch", async (event) => {
   event.respondWith(
     (async () => {
@@ -57,7 +57,7 @@ self.addEventListener("fetch", async (event) => {
       try {
         const networkResponse = await fetch(event.request);
         const cache = await caches.open(CACHE_NAME);
-        await cache.put(event.request, networkResponse.clone()); // Update cache with the fetched response
+        await cache.put(event.request, networkResponse.clone());
         return networkResponse;
       } catch (error) {
         console.error("Fetch failed, returning offline page:", error);
