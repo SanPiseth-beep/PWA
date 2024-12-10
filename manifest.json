@@ -4,34 +4,34 @@
     "description": "This is a sample palette picker.",
     "icons": [
       {
-        "src": "img/icons-48.png",
+        "src": "./img/icons-48.png",
         "sizes": "48x48",
         "type": "image/png"
       },
       {
-        "src": "img/icons-96.png",
+        "src": "./img/icons-96.png",
         "sizes": "96x96",
         "type": "image/png"
       },
       {
-        "src": "img/icons-576.png",
+        "src": "./img/icons-576.png",
         "sizes": "576x576",
         "type": "image/png"
       }
     ],
     "screenshots": [
       {
-        "src": "/img/screenshot1.png",
+        "src": "./img/screenshot1.png",
         "type": "image/png",
         "sizes": "1920x878",
         "form_factor": "wide"
       }
     ],
-    "start_url": "/index.html",
-    "scope": "/",
+    "start_url": "./index.html",
+    "scope": "./",
     "display": "standalone",
     "background_color": "#f5f5f5",
     "theme_color": "#00897b",
     "lang": "en-US",
     "orientation": "portrait-primary"
-  }
+}

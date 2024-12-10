@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -112,15 +112,15 @@
         </div>
     </main>
 
-    <script type="module" src="js/config.js"></script>
-    <script type="module" src="js/ui.js"></script>
-    <script type="module" src="js/palette.js"></script>
-    <script type="module" src="js/materialize.min.js"></script>
-    <script type="module" src="js/firebaseDB.js"></script>
+    <script type="module" src="./js/config.js"></script>
+    <script type="module" src="./js/ui.js"></script>
+    <script type="module" src="./js/palette.js"></script>
+    <script type="module" src="./js/materialize.min.js"></script>
+    <script type="module" src="./js/firebaseDB.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 }, function(err) {
                     console.log('ServiceWorker registration failed: ', err);
