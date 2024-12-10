@@ -5,6 +5,8 @@ const urlsToCache = [
   "/pages/about.html",
   "/pages/contact.html",
   "/pages/howto.html",
+  "/pages/login.html",
+  "/pages/signup.html",
   "/css/materialize.min.css",
   "/js/materialize.min.js",
   "/js/ui.js",
@@ -13,8 +15,12 @@ const urlsToCache = [
   "/js/firebaseDB.js",
   "/js/indexedDB.js",
   "/js/sync.js",
+  "/js/firebaseAuth.js",
+  "/js/firebaseCRUD.js",
+  "/js/sidenav.js",
   "/img/icons-48.png",
   "/img/icons-96.png",
+  "/img/icons-576.png",
   "/img/boy_499x500.png",
 ];
 

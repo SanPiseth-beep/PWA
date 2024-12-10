@@ -1,3 +1,5 @@
+import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
 const dbName = 'PalettePickerDB';
 const dbVersion = 2; // Increment the version to trigger onupgradeneeded
 let db;
@@ -18,10 +20,12 @@ function openDatabase() {
     request.onupgradeneeded = function(event) {
       db = event.target.result;
       if (!db.objectStoreNames.contains('palettes')) {
-        db.createObjectStore('palettes', { keyPath: 'id' });
+        const paletteStore = db.createObjectStore('palettes', { keyPath: 'id' });
+        paletteStore.createIndex('userId', 'userId', { unique: false });
       }
       if (!db.objectStoreNames.contains('deletedPalettes')) {
-        db.createObjectStore('deletedPalettes', { keyPath: 'id' });
+        const deletedStore = db.createObjectStore('deletedPalettes', { keyPath: 'id' });
+        deletedStore.createIndex('userId', 'userId', { unique: false });
       }
     };
 
@@ -39,15 +43,22 @@ function openDatabase() {
 }
 
 async function savePalette(palette) {
+  const user = getAuth().currentUser;
+  if (!user) throw new Error('User not authenticated');
   if (!db) {
-    await openDatabase();
+    db = await openDatabase();
   }
   return new Promise((resolve, reject) => {
+    if (!db) {
+      reject('Database not initialized');
+      return;
+    }
     const transaction = db.transaction(['palettes'], 'readwrite');
     const store = transaction.objectStore('palettes');
     if (!palette.id) {
       palette.id = generateId(); // Generate a unique id if it doesn't exist
     }
+    palette.userId = user.uid;
     const request = store.put(palette); // Use put to update or add
     request.onsuccess = function(event) {
       resolve(palette); // Return the palette with the id
@@ -59,11 +70,13 @@ async function savePalette(palette) {
 }
 
 function getPalettes(callback) {
+  const user = getAuth().currentUser;
+  if (!user) throw new Error('User not authenticated');
   if (!db) {
     openDatabase().then(() => {
       const transaction = db.transaction(['palettes'], 'readonly');
       const store = transaction.objectStore('palettes');
-      const request = store.getAll();
+      const request = store.index('userId').getAll(user.uid);
 
       request.onsuccess = function(event) {
         callback(event.target.result);
@@ -76,7 +89,7 @@ function getPalettes(callback) {
   } else {
     const transaction = db.transaction(['palettes'], 'readonly');
     const store = transaction.objectStore('palettes');
-    const request = store.getAll();
+    const request = store.index('userId').getAll(user.uid);
 
     request.onsuccess = function(event) {
       callback(event.target.result);
@@ -89,6 +102,8 @@ function getPalettes(callback) {
 }
 
 function deletePalette(id) {
+  const user = getAuth().currentUser;
+  if (!user) throw new Error('User not authenticated');
   if (!db) {
     openDatabase().then(() => deletePalette(id));
     return;
@@ -97,7 +112,7 @@ function deletePalette(id) {
   const paletteStore = transaction.objectStore('palettes');
   const deletedStore = transaction.objectStore('deletedPalettes');
   paletteStore.delete(id);
-  deletedStore.put({ id });
+  deletedStore.put({ id, userId: user.uid });
 }
 
 async function clearIndexedDB() {
@@ -132,11 +147,13 @@ async function clearIndexedDB() {
 }
 
 function getDeletedPalettes(callback) {
+  const user = getAuth().currentUser;
+  if (!user) throw new Error('User not authenticated');
   if (!db) {
     openDatabase().then(() => {
       const transaction = db.transaction(['deletedPalettes'], 'readonly');
       const store = transaction.objectStore('deletedPalettes');
-      const request = store.getAll();
+      const request = store.index('userId').getAll(user.uid);
 
       request.onsuccess = function(event) {
         callback(event.target.result);
@@ -149,7 +166,7 @@ function getDeletedPalettes(callback) {
   } else {
     const transaction = db.transaction(['deletedPalettes'], 'readonly');
     const store = transaction.objectStore('deletedPalettes');
-    const request = store.getAll();
+    const request = store.index('userId').getAll(user.uid);
 
     request.onsuccess = function(event) {
       callback(event.target.result);

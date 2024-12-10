@@ -1,15 +1,14 @@
 import { db, collection, setDoc, getDocs, updateDoc, deleteDoc, doc } from './firebaseDB.js';
+import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
-const palettesCollection = collection(db, 'palettes');
+const auth = getAuth();
 
 async function createPalette(palette) {
   try {
-    const paletteId = palette.id;
-    if (!paletteId) {
-      console.error('No ID provided for the palette');
-      return;
-    }
-    await setDoc(doc(db, 'palettes', paletteId), palette);
+    const user = auth.currentUser;
+    if (!user) throw new Error('User not authenticated');
+    const paletteId = palette.id || generateId();
+    await setDoc(doc(db, `users/${user.uid}/palettes`, paletteId), palette);
     console.log('Document written with ID: ', paletteId);
     return paletteId;
   } catch (e) {
@@ -19,7 +18,9 @@ async function createPalette(palette) {
 
 async function readPalettes() {
   try {
-    const querySnapshot = await getDocs(palettesCollection);
+    const user = auth.currentUser;
+    if (!user) throw new Error('User not authenticated');
+    const querySnapshot = await getDocs(collection(db, `users/${user.uid}/palettes`));
     const palettes = [];
     querySnapshot.forEach((doc) => {
       palettes.push({ id: doc.id, ...doc.data() });
@@ -32,16 +33,16 @@ async function readPalettes() {
 }
 
 async function updatePalette(id, updatedPalette) {
-  const paletteDoc = doc(db, 'palettes', id);
+  const user = auth.currentUser;
+  if (!user) throw new Error('User not authenticated');
+  const paletteDoc = doc(db, `users/${user.uid}/palettes`, id);
   await updateDoc(paletteDoc, updatedPalette);
 }
 
 async function deletePalette(id) {
-  if (typeof id !== 'string') {
-    console.error('Invalid ID:', id);
-    return;
-  }
-  const paletteDoc = doc(db, 'palettes', id);
+  const user = auth.currentUser;
+  if (!user) throw new Error('User not authenticated');
+  const paletteDoc = doc(db, `users/${user.uid}/palettes`, id);
   await deleteDoc(paletteDoc);
 }
 
